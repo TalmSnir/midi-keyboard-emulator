@@ -1,0 +1,304 @@
+@mixin black-key {
+  content: "";
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: -30%;
+  width: 60%;
+  height: 60%;
+  background: black;
+  box-shadow: 0.1em 0.3em 0.1em 0.4em rgba(0, 0, 0, 1),
+    0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray,
+    inset 0.2em 0.1em rgba(255, 255, 255, 0.6),
+    inset -0.2em 0 rgba(58, 58, 58, 0.5);
+  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.1em;
+  transform: rotateX(100px);
+  perspective: -200px;
+}
+
+:root {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-sm {
+  background: rgba(92, 92, 92, 0.5);
+  border: 0.1em solid white;
+  height: 2rem;
+  width: 4rem;
+}
+.btn-lg {
+  background: rgba(92, 92, 92, 0.5);
+  border: 0.1em solid white;
+  height: 4rem;
+  width: 4rem;
+}
+.midi-container {
+  display: grid;
+  grid-template: repeat(6, 1fr) / repeat(13, 1fr);
+  width: 90%;
+  height: 80%;
+  border: 2px solid black;
+  background: black;
+}
+.wheels-container {
+  grid-row: 1/4;
+  grid-column: 1/3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  .wheel {
+    width: 60%;
+    height: 80%;
+    background: black;
+    border-radius: 1em;
+    box-shadow: 0 0 0 0.5em rgba(92, 92, 92, 0.5);
+  }
+}
+.buttons-left-container {
+  grid-row: 1/4;
+  grid-column: 3/4;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+
+  .timing-btns {
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .octave-btns {
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+}
+.nobs-container {
+  grid-row: 1;
+  grid-column: 4/11;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  place-items: center;
+  .nob {
+    background: rgba(44, 46, 46, 0.824);
+    filter: drop-shadow(0 0 0.1em rgba(38, 38, 38, 0.6));
+    border-radius: 50%;
+    height: 40%;
+    width: 40%;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 50%;
+      transform-origin: 100%;
+      transform: rotate(-90deg);
+      width: 1em;
+      height: 0.2em;
+      background: white;
+    }
+  }
+}
+.pads-container {
+  grid-row: 2/4;
+  grid-column: 4/11;
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(7, 1fr);
+  padding: 0.5em;
+  place-items: center;
+
+  .pad {
+    width: 90%;
+    height: 80%;
+
+    box-shadow: inset 0 0 0.1em 0.05em rgba(0, 0, 0, 0.9),
+      0.05em 0.05em 0.05em 0.05em rgb(38, 37, 37);
+    filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 255, 255, 0.4));
+    border-radius: 0.5em;
+  }
+  .pad-col-1-row-1,
+  .pad-col-2-row-1,
+  .pad-col-3-row-1,
+  .pad-col-4-row-1,
+  .pad-col-6-row-1,
+  .pad-col-7-row-1 {
+    grid-row: 1;
+  }
+  .pad-col-1-row-2,
+  .pad-col-2-row-2,
+  .pad-col-3-row-2,
+  .pad-col-4-row-2,
+  .pad-col-6-row-2,
+  .pad-col-7-row-2 {
+    grid-row: 2;
+  }
+  .pad-col-1-row-1,
+  .pad-col-1-row-2 {
+    grid-column: 1;
+  }
+  .pad-col-2-row-1,
+  .pad-col-2-row-2 {
+    grid-column: 2;
+  }
+  .pad-col-3-row-1,
+  .pad-col-3-row-2 {
+    grid-column: 3;
+  }
+  .pad-col-4-row-1,
+  .pad-col-4-row-2 {
+    grid-column: 4;
+  }
+  .pad-col-5-row-1,
+  .pad-col-5-row-2 {
+    grid-column: 5;
+  }
+  .pad-col-6-row-1,
+  .pad-col-6-row-2 {
+    grid-column: 6;
+  }
+  .pad-col-7-row-1,
+  .pad-col-7-row-2 {
+    grid-column: 7;
+  }
+
+  .pad-col-1-row-1,
+  .pad-col-1-row-2 {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.5),
+        rgba(0, 227, 252, 0.8),
+        rgba(2, 176, 228, 0.8)
+      ),
+      rgba(9, 219, 242, 0.8);
+  }
+  .pad-col-2-row-1,
+  .pad-col-2-row-2 {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.5),
+        rgba(247, 6, 70, 0.8),
+        rgba(232, 21, 31, 0.8)
+      ),
+      rgba(234, 4, 4, 0.8);
+  }
+  .pad-col-3-row-1,
+  .pad-col-3-row-2 {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.5),
+        rgba(242, 6, 242, 0.8),
+        rgba(191, 23, 191, 0.8)
+      ),
+      rgba(191, 23, 191, 0.8);
+  }
+  .pad-col-4-row-1,
+  .pad-col-4-row-2 {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.5),
+        rgba(6, 242, 112, 0.8),
+        rgba(14, 223, 150, 0.53)
+      ),
+      rgba(23, 191, 90, 0.55);
+  }
+  .pad-col-5-row-1,
+  .pad-col-5-row-2 {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.5),
+        rgba(242, 242, 6, 0.955),
+        rgba(255, 234, 6, 0.53)
+      ),
+      rgb(240, 240, 13);
+  }
+  .pad-col-6-row-1,
+  .pad-col-6-row-2 {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 174, 0, 0.955),
+        rgb(255, 175, 3)
+      ),
+      rgb(249, 179, 4);
+  }
+  .pad-col-7-row-1,
+  .pad-col-7-row-2 {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.5),
+        rgba(0, 0, 255, 0.955),
+        rgb(54, 20, 177)
+      ),
+      rgb(57, 4, 249);
+  }
+}
+.buttons-right-container {
+  grid-row: 1/4;
+  grid-column: 11/-1;
+}
+.keyboard-container {
+  background: purple;
+  grid-row: 4/-1;
+  grid-column: 2/13;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  place-items: center;
+  gap: 0.2em;
+  box-shadow: 0 0em 0.3em 0.1em rgba(255, 255, 255, 0.8);
+  .key {
+    height: 100%;
+    width: 100%;
+    background: white;
+    border: 0.2em solid black;
+    border-radius: 0 0 0.4em 0.4em;
+    position: relative;
+  }
+
+  .key-1::after {
+    @include black-key;
+  }
+  .key-2::after {
+    @include black-key;
+  }
+
+  .key-4::after {
+    @include black-key;
+  }
+
+  .key-5::after {
+    @include black-key;
+  }
+  .key-6::after {
+    @include black-key;
+  }
+
+  .key-8::after {
+    @include black-key;
+  }
+  .key-9::after {
+    @include black-key;
+  }
+  .key-11::after {
+    @include black-key;
+  }
+  .key-12::after {
+    @include black-key;
+  }
+  .key-13::after {
+    @include black-key;
+  }
+}
