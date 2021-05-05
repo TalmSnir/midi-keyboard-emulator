@@ -16,7 +16,17 @@
   transform: rotateX(100px);
   perspective: -200px;
 }
-
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 :root {
   box-sizing: border-box;
   padding: 0;
@@ -29,17 +39,37 @@ body {
   justify-content: center;
   align-items: center;
 }
-.btn-sm {
+h1 {
+  font-size: 1rem;
+  color: white;
+  text-transform: capitalize;
+  margin: 0;
+}
+span {
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize;
+  text-align: center;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgba(92, 92, 92, 0.5);
-  border: 0.1em solid white;
+  box-shadow: 0.05em 0.05em 0.05em 0.1em rgba(255, 255, 255, 0.3);
+  border: 0.1em outset white;
+
+  border-radius: 0.1em;
+  transform: rotateX(20deg);
+}
+.btn-sm {
   height: 2rem;
   width: 4rem;
 }
 .btn-lg {
-  background: rgba(92, 92, 92, 0.5);
-  border: 0.1em solid white;
-  height: 4rem;
-  width: 4rem;
+  height: 5rem;
+  width: 5rem;
 }
 .midi-container {
   display: grid;
@@ -47,7 +77,12 @@ body {
   width: 90%;
   height: 80%;
   border: 2px solid black;
-  background: black;
+  background: radial-gradient(black 15%, transparent 2%) 0 0,
+    radial-gradient(black 15%, transparent 2%) 8px 8px,
+    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
+  background-color: #282828;
+  background-size: 10px 10px;
 }
 .wheels-container {
   grid-row: 1/4;
@@ -59,8 +94,22 @@ body {
     width: 60%;
     height: 80%;
     background: black;
-    border-radius: 1em;
-    box-shadow: 0 0 0 0.5em rgba(92, 92, 92, 0.5);
+    border-radius: 0.5em;
+    border: 0.4em groove rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0 0.1em 0.1em rgba(255, 255, 255, 0.7);
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 80%;
+      height: 0.3em;
+      background: rgba(158, 156, 156, 0.5);
+      border-bottom: 0.1em solid rgba(255, 255, 255, 0.3);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 .buttons-left-container {
@@ -77,6 +126,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    font-size: 0.8em;
   }
   .octave-btns {
     grid-row: 2;
@@ -93,12 +143,35 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   place-items: center;
+
   .nob {
-    background: rgba(44, 46, 46, 0.824);
-    filter: drop-shadow(0 0 0.1em rgba(38, 38, 38, 0.6));
+    background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+      linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+      linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+      linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+      linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+      linear-gradient(
+        #1d1d1d 25%,
+        #1a1a1a 25%,
+        #1a1a1a 50%,
+        transparent 50%,
+        transparent 75%,
+        #242424 75%,
+        #242424
+      );
+    background-color: #131313;
+    background-size: 1em 1em;
+
+    box-shadow: 0 0 0.1em 0.1em rgba(221, 219, 219, 0.6),
+      0 0 0.1em 0.05em rgba(133, 132, 132, 0.6),
+      0.05em 0.1em 0.05em 0.1em rgba(255, 255, 255, 0.7);
     border-radius: 50%;
+
     height: 40%;
     width: 40%;
+    border: 1px solid gray;
+    transform: rotateX(30deg) translate3d(0, 0, 0.5em);
+    transform-style: preserve-3d;
     position: relative;
     &::after {
       content: "";
@@ -249,6 +322,44 @@ body {
 .buttons-right-container {
   grid-row: 1/4;
   grid-column: 11/-1;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  .logo {
+    grid-row: 1;
+    grid-column: 1/-1;
+    h1 {
+      padding: 1em;
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
+  .btn-lg-container {
+    @include flex-col;
+    grid-row: 2/4;
+    grid-column: 1;
+    gap: 1em;
+    .fa-chevron-right {
+      font-size: 2em;
+    }
+  }
+  .btn-sm-container {
+    grid-row: 2/4;
+    grid-column: 2/4;
+    @include flex-col;
+    gap: 2em;
+    .track {
+      @include flex-row;
+      gap: 1em;
+      font-size: 0.8em;
+    }
+    .capture {
+      @include flex-row;
+      gap: 1em;
+      .fa-circle {
+        color: red;
+      }
+    }
+  }
 }
 .keyboard-container {
   background: purple;
