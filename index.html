@@ -3,27 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="mainstyle.css" />
     <title>mis keyboard emulator</title>
   </head>
   <body>
     <div class="midi-container">
       <div class="wheels-container">
-        <div class="wheel"></div>
-        <div class="wheel"></div>
+        <div class="left-wheel">
+          <h1 class="pitch">pitch</h1>
+          <div class="wheel"><div class="slide-bar-left"></div></div>
+        </div>
+        <div class="right-wheel">
+          <h1 class="modulation">modulation</h1>
+          <div class="wheel"><div class="slide-bar-right"></div></div>
+        </div>
       </div>
       <div class="buttons-left-container">
         <div class="timing-btns">
-          <div class="btn btn-sm btn-left"><span>shift</span></div>
-          <div class="btn btn-sm btn-left"><span>transpose</span></div>
+          <div class="btn btn-sm btn-left shift"><span>shift</span></div>
+          <div class="btn btn-sm btn-left transpose">
+            <span>transpose</span>
+          </div>
         </div>
         <div class="octave-btns">
           <h1>octave</h1>
-          <div class="btn btn-sm btn-left plus">
+          <div class="btn btn-sm btn-left plus momentary">
             <span><i class="fas fa-plus"></i></span>
           </div>
-          <div class="btn btn-sm btn-left minus">
+          <div class="btn btn-sm btn-left minus momentary">
             <span><i class="fas fa-minus"></i></span>
           </div>
         </div>
@@ -38,39 +46,40 @@
         <div class="nob tone"></div>
       </div>
       <div class="pads-container">
-        <div class="pad pad-col-1-row-1"></div>
-        <div class="pad pad-col-1-row-2"></div>
-        <div class="pad pad-col-2-row-1"></div>
-        <div class="pad pad-col-2-row-2"></div>
-        <div class="pad pad-col-3-row-1"></div>
-        <div class="pad pad-col-3-row-2"></div>
-        <div class="pad pad-col-4-row-1"></div>
-        <div class="pad pad-col-4-row-2"></div>
-        <div class="pad pad-col-5-row-1"></div>
-        <div class="pad pad-col-5-row-2"></div>
-        <div class="pad pad-col-6-row-1"></div>
-        <div class="pad pad-col-6-row-2"></div>
-        <div class="pad pad-col-7-row-1"></div>
-        <div class="pad pad-col-7-row-2"></div>
+        <div class="pad pad-col-1-row-1 momentary"></div>
+        <div class="pad pad-col-1-row-2 momentary"></div>
+        <div class="pad pad-col-2-row-1 momentary"></div>
+        <div class="pad pad-col-2-row-2 momentary"></div>
+        <div class="pad pad-col-3-row-1 momentary"></div>
+        <div class="pad pad-col-3-row-2 momentary"></div>
+        <div class="pad pad-col-4-row-1 momentary"></div>
+        <div class="pad pad-col-4-row-2 momentary"></div>
+        <div class="pad pad-col-5-row-1 momentary"></div>
+        <div class="pad pad-col-5-row-2 momentary"></div>
+        <div class="pad pad-col-6-row-1 momentary"></div>
+        <div class="pad pad-col-6-row-2 momentary"></div>
+        <div class="pad pad-col-7-row-1 momentary"></div>
+        <div class="pad pad-col-7-row-2 momentary"></div>
       </div>
       <div class="buttons-right-container">
-        <div class="logo"><h1>logo</h1></div>
+        <div class="logo"><h1>feel the music</h1></div>
         <div class="btn-lg-container">
-          <div class="btn btn-lg btn-right">
+          <div class="btn btn-lg btn-right chevron">
             <span
               ><span><i class="fas fa-chevron-right"></i></span
             ></span>
           </div>
-          <div class="btn btn-lg btn-right">
+          <div class="btn btn-lg btn-right solo-mute">
             <span>stop<br />solo<br />mute </span>
           </div>
         </div>
         <div class="btn-sm-container">
           <div class="track">
-            <div class="btn btn-sm btn-right">
+            <h1>track</h1>
+            <div class="btn btn-sm btn-right ap">
               <span>A/p</span>
             </div>
-            <div class="btn btn-sm btn-right">
+            <div class="btn btn-sm btn-right fixed-chord">
               <span
                 >fixed<br />
                 chord</span
@@ -78,36 +87,48 @@
             </div>
           </div>
           <div class="capture">
-            <div class="btn btn-sm btn-right">
+            <h1>capture</h1>
+            <div class="btn btn-sm btn-right play-capture">
               <span><i class="fas fa-play"></i></span>
             </div>
-            <div class="btn btn-sm btn-right">
+            <div class="btn btn-sm btn-right record">
               <span><i class="fas fa-circle"></i></span>
             </div>
           </div>
         </div>
       </div>
       <div class="keyboard-container">
-        <div class="key key-1"></div>
-        <div class="key key-2"></div>
-        <div class="key key-3"></div>
-        <div class="key key-4"></div>
-        <div class="key key-5"></div>
-        <div class="key key-6"></div>
-        <div class="key key-7"></div>
-        <div class="key key-8"></div>
-        <div class="key key-9"></div>
-        <div class="key key-10"></div>
-        <div class="key key-11"></div>
-        <div class="key key-12"></div>
-        <div class="key key-13"></div>
-        <div class="key key-14"></div>
-        <div class="key key-15"></div>
+        <div class="key key-1 momentary"></div>
+        <div class="key key-2 momentary"></div>
+        <div class="key key-3 momentary"></div>
+        <div class="key key-4 momentary"></div>
+        <div class="key key-5 momentary"></div>
+        <div class="key key-6 momentary"></div>
+        <div class="key key-7 momentary"></div>
+        <div class="key key-8 momentary"></div>
+        <div class="key key-9 momentary"></div>
+        <div class="key key-10 momentary"></div>
+        <div class="key key-11 momentary"></div>
+        <div class="key key-12 momentary"></div>
+        <div class="key key-13 momentary"></div>
+        <div class="key key-14 momentary"></div>
+        <div class="key key-15 momentary"></div>
+        <div class="key key-16 momentary"></div>
+        <div class="key key-17 momentary"></div>
+        <div class="key key-18 momentary"></div>
+        <div class="key key-19 momentary"></div>
+        <div class="key key-20 momentary"></div>
+        <div class="key key-21 momentary"></div>
+        <div class="key key-22 momentary"></div>
+        <div class="key key-23 momentary"></div>
+        <div class="key key-24 momentary"></div>
+        <div class="key key-25 momentary"></div>
       </div>
     </div>
     <script
       src="https://kit.fontawesome.com/7de0d60bf7.js"
       crossorigin="anonymous"
     ></script>
+    <script src="script.js"></script>
   </body>
 </html>

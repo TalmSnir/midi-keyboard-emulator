@@ -17,13 +17,17 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 1rem;
-  color: white;
+  font-size: 1em;
   text-transform: capitalize;
-  margin: 0;
+  color: rgba(221, 219, 219, 0.6);
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0 0 0.2em 0;
 }
 
 span {
@@ -32,6 +36,14 @@ span {
   color: white;
   text-transform: capitalize;
   text-align: center;
+}
+
+.btn:hover,
+.key:hover,
+.pad:hover,
+.nob:hover,
+.wheel:hover {
+  cursor: pointer;
 }
 
 .btn {
@@ -44,13 +56,26 @@ span {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: rgba(92, 92, 92, 0.5);
+  background: rgba(92, 92, 92, 0.9);
   -webkit-box-shadow: 0.05em 0.05em 0.05em 0.1em rgba(255, 255, 255, 0.3);
           box-shadow: 0.05em 0.05em 0.05em 0.1em rgba(255, 255, 255, 0.3);
   border: 0.1em outset white;
   border-radius: 0.1em;
   -webkit-transform: rotateX(20deg);
           transform: rotateX(20deg);
+  -webkit-transition: all 0.05s ease-in-out;
+  transition: all 0.05s ease-in-out;
+}
+
+.btn.active {
+  -webkit-box-shadow: 0.05em 0.05em 0.1em 0.1em rgba(255, 255, 186, 0.9);
+          box-shadow: 0.05em 0.05em 0.1em 0.1em rgba(255, 255, 186, 0.9);
+  -webkit-transform: translateZ(-0.05em);
+          transform: translateZ(-0.05em);
+}
+
+.btn.active span {
+  color: rgba(255, 255, 102, 0.7);
 }
 
 .btn-sm {
@@ -88,7 +113,7 @@ span {
   display: grid;
   -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
-  place-items: center;
+  text-align: center;
 }
 
 .wheels-container .wheel {
@@ -100,10 +125,11 @@ span {
   -webkit-box-shadow: inset 0 0 0.1em 0.1em rgba(255, 255, 255, 0.7);
           box-shadow: inset 0 0 0.1em 0.1em rgba(255, 255, 255, 0.7);
   position: relative;
+  margin: 0 auto;
 }
 
-.wheels-container .wheel::after {
-  content: "";
+.wheels-container .wheel .slide-bar-right,
+.wheels-container .wheel .slide-bar-left {
   position: absolute;
   display: block;
   width: 80%;
@@ -182,11 +208,10 @@ span {
 }
 
 .nobs-container .nob {
-  background: linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px, linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px, linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px, linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px, linear-gradient(90deg, #1b1b1b 10px, transparent 10px), linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
   background-color: #131313;
   background-size: 1em 1em;
-  -webkit-box-shadow: 0 0 0.1em 0.1em rgba(221, 219, 219, 0.6), 0 0 0.1em 0.05em rgba(133, 132, 132, 0.6), 0.05em 0.1em 0.05em 0.1em rgba(255, 255, 255, 0.7);
-          box-shadow: 0 0 0.1em 0.1em rgba(221, 219, 219, 0.6), 0 0 0.1em 0.05em rgba(133, 132, 132, 0.6), 0.05em 0.1em 0.05em 0.1em rgba(255, 255, 255, 0.7);
+  -webkit-box-shadow: 0 0 0.1em 0.1em rgba(221, 219, 219, 0.6), 0 0 0.1em 0.05em rgba(133, 132, 132, 0.6), 0em 0em 0.05em 0.1em rgba(255, 255, 255, 0.7);
+          box-shadow: 0 0 0.1em 0.1em rgba(221, 219, 219, 0.6), 0 0 0.1em 0.05em rgba(133, 132, 132, 0.6), 0em 0em 0.05em 0.1em rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   height: 40%;
   width: 40%;
@@ -231,11 +256,14 @@ span {
 .pads-container .pad {
   width: 90%;
   height: 80%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.7), rgba(255, 255, 186, 0.8), rgba(255, 255, 200, 0.8), rgba(255, 255, 214, 0.8)), rgba(255, 255, 102, 0.8);
   -webkit-box-shadow: inset 0 0 0.1em 0.05em rgba(0, 0, 0, 0.9), 0.05em 0.05em 0.05em 0.05em #262525;
           box-shadow: inset 0 0 0.1em 0.05em rgba(0, 0, 0, 0.9), 0.05em 0.05em 0.05em 0.05em #262525;
-  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 255, 255, 0.4));
-          filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 255, 255, 0.4));
+  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 255, 186, 0.9));
+          filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 255, 186, 0.9));
   border-radius: 0.5em;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .pads-container .pad-col-1-row-1,
@@ -300,39 +328,53 @@ span {
   grid-column: 7;
 }
 
-.pads-container .pad-col-1-row-1,
-.pads-container .pad-col-1-row-2 {
+.pads-container .pad-col-1-row-1.active,
+.pads-container .pad-col-1-row-2.active {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(0, 227, 252, 0.8), rgba(2, 176, 228, 0.8)), rgba(9, 219, 242, 0.8);
+  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(0, 227, 252, 0.8));
+          filter: drop-shadow(0.1em 0.1em 0.1em rgba(0, 227, 252, 0.8));
 }
 
-.pads-container .pad-col-2-row-1,
-.pads-container .pad-col-2-row-2 {
+.pads-container .pad-col-2-row-1.active,
+.pads-container .pad-col-2-row-2.active {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(247, 6, 70, 0.8), rgba(232, 21, 31, 0.8)), rgba(234, 4, 4, 0.8);
+  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(247, 6, 70, 0.8));
+          filter: drop-shadow(0.1em 0.1em 0.1em rgba(247, 6, 70, 0.8));
 }
 
-.pads-container .pad-col-3-row-1,
-.pads-container .pad-col-3-row-2 {
+.pads-container .pad-col-3-row-1.active,
+.pads-container .pad-col-3-row-2.active {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(242, 6, 242, 0.8), rgba(191, 23, 191, 0.8)), rgba(191, 23, 191, 0.8);
+  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(242, 6, 242, 0.8));
+          filter: drop-shadow(0.1em 0.1em 0.1em rgba(242, 6, 242, 0.8));
 }
 
-.pads-container .pad-col-4-row-1,
-.pads-container .pad-col-4-row-2 {
+.pads-container .pad-col-4-row-1.active,
+.pads-container .pad-col-4-row-2.active {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(6, 242, 112, 0.8), rgba(14, 223, 150, 0.53)), rgba(23, 191, 90, 0.55);
+  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(6, 242, 112, 0.8));
+          filter: drop-shadow(0.1em 0.1em 0.1em rgba(6, 242, 112, 0.8));
 }
 
-.pads-container .pad-col-5-row-1,
-.pads-container .pad-col-5-row-2 {
+.pads-container .pad-col-5-row-1.active,
+.pads-container .pad-col-5-row-2.active {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(242, 242, 6, 0.955), rgba(255, 234, 6, 0.53)), #f0f00d;
+  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 255, 1, 0.8));
+          filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 255, 1, 0.8));
 }
 
-.pads-container .pad-col-6-row-1,
-.pads-container .pad-col-6-row-2 {
+.pads-container .pad-col-6-row-1.active,
+.pads-container .pad-col-6-row-2.active {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 174, 0, 0.955), #ffaf03), #f9b304;
+  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 177, 90, 0.8));
+          filter: drop-shadow(0.1em 0.1em 0.1em rgba(255, 177, 90, 0.8));
 }
 
-.pads-container .pad-col-7-row-1,
-.pads-container .pad-col-7-row-2 {
+.pads-container .pad-col-7-row-1.active,
+.pads-container .pad-col-7-row-2.active {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(0, 0, 255, 0.955), #3614b1), #3904f9;
+  -webkit-filter: drop-shadow(0.1em 0.1em 0.1em rgba(95, 109, 211, 0.96));
+          filter: drop-shadow(0.1em 0.1em 0.1em rgba(95, 109, 211, 0.96));
 }
 
 .buttons-right-container {
@@ -354,7 +396,7 @@ span {
 }
 
 .buttons-right-container .logo h1 {
-  padding: 1em;
+  margin-top: 1em;
   text-align: center;
   font-size: 2rem;
 }
@@ -379,6 +421,33 @@ span {
   -ms-grid-column: 1;
   grid-column: 1;
   gap: 1em;
+  position: relative;
+}
+
+.buttons-right-container .btn-lg-container::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 0.7em solid rgba(221, 219, 219, 0.6);
+  border-top: 0.7em solid transparent;
+  border-bottom: 0.7em solid transparent;
+  top: -0.7em;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.buttons-right-container .btn-lg-container::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 0.7em solid rgba(221, 219, 219, 0.6);
+  border-top: 0.7em solid transparent;
+  border-bottom: 0.7em solid transparent;
+  bottom: -0.7em;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 
 .buttons-right-container .btn-lg-container .fa-chevron-right {
@@ -405,7 +474,7 @@ span {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 2em;
+  gap: 3em;
 }
 
 .buttons-right-container .btn-sm-container .track {
@@ -420,6 +489,36 @@ span {
           align-items: center;
   gap: 1em;
   font-size: 0.8em;
+  position: relative;
+}
+
+.buttons-right-container .btn-sm-container .track h1 {
+  position: absolute;
+  bottom: -2em;
+}
+
+.buttons-right-container .btn-sm-container .track h1::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 0.7em solid rgba(221, 219, 219, 0.6);
+  border-top: 0.7em solid transparent;
+  border-bottom: 0.7em solid transparent;
+  left: 0;
+}
+
+.buttons-right-container .btn-sm-container .track h1::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 0.7em solid rgba(221, 219, 219, 0.6);
+  border-top: 0.7em solid transparent;
+  border-bottom: 0.7em solid transparent;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  right: 0;
 }
 
 .buttons-right-container .btn-sm-container .capture {
@@ -433,6 +532,16 @@ span {
       -ms-flex-align: center;
           align-items: center;
   gap: 1em;
+  font-size: 0.8em;
+  position: relative;
+}
+
+.buttons-right-container .btn-sm-container .capture h1 {
+  display: inline;
+  width: unset;
+  position: absolute;
+  bottom: -2em;
+  right: 0.5em;
 }
 
 .buttons-right-container .btn-sm-container .capture .fa-circle {
@@ -440,7 +549,7 @@ span {
 }
 
 .keyboard-container {
-  background: purple;
+  margin-top: 1em;
   grid-row: 4/-1;
   -ms-grid-column: 2;
   -ms-grid-column-span: 11;
@@ -453,6 +562,7 @@ span {
   gap: 0.2em;
   -webkit-box-shadow: 0 0em 0.3em 0.1em rgba(255, 255, 255, 0.8);
           box-shadow: 0 0em 0.3em 0.1em rgba(255, 255, 255, 0.8);
+  position: relative;
 }
 
 .keyboard-container .key {
@@ -462,195 +572,72 @@ span {
   border: 0.2em solid black;
   border-radius: 0 0 0.4em 0.4em;
   position: relative;
+  -webkit-transform-origin: top;
+          transform-origin: top;
 }
 
-.keyboard-container .key-1::after {
-  content: "";
+.keyboard-container .key-2,
+.keyboard-container .key-4,
+.keyboard-container .key-7,
+.keyboard-container .key-9,
+.keyboard-container .key-11,
+.keyboard-container .key-14,
+.keyboard-container .key-16,
+.keyboard-container .key-19,
+.keyboard-container .key-21,
+.keyboard-container .key-23 {
   z-index: 2;
   position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
+  top: 0.05em;
+  width: 3%;
   height: 60%;
   background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
+  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em 0em 0.05em 0.2em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
+          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em 0em 0.05em 0.2em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
   border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
   -webkit-transform: rotateX(100px);
           transform: rotateX(100px);
   -webkit-perspective: -200px;
           perspective: -200px;
 }
 
-.keyboard-container .key-2::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-2 {
+  left: calc((100% / 15) * 0.5);
 }
 
-.keyboard-container .key-4::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-4 {
+  left: calc((100% / 15) * (0.5 * 2 + 0.9));
 }
 
-.keyboard-container .key-5::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-7 {
+  left: calc((100% / 15) * (0.5 * 7));
 }
 
-.keyboard-container .key-6::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-9 {
+  left: calc((100% / 15) * (0.5 * 8 + 0.7));
 }
 
-.keyboard-container .key-8::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-11 {
+  left: calc((100% / 15) * (0.5 * 10 + 0.9));
 }
 
-.keyboard-container .key-9::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-14 {
+  left: calc((100% / 15) * (0.5 * 15));
 }
 
-.keyboard-container .key-11::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-16 {
+  left: calc((100% / 15) * (0.5 * 16 + 0.9));
 }
 
-.keyboard-container .key-12::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-19 {
+  left: calc((100% / 15) * (0.5 * 21));
 }
 
-.keyboard-container .key-13::after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  right: -30%;
-  width: 60%;
-  height: 60%;
-  background: black;
-  -webkit-box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-          box-shadow: 0.1em 0.3em 0.1em 0.4em black, 0.1em -0.3em 0.05em 0.4em rgba(0, 0, 0, 0.9), inset 0.05em 0.05em gray, inset 0.2em 0.1em rgba(255, 255, 255, 0.6), inset -0.2em 0 rgba(58, 58, 58, 0.5);
-  border-bottom: 1em solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.1em;
-  -webkit-transform: rotateX(100px);
-          transform: rotateX(100px);
-  -webkit-perspective: -200px;
-          perspective: -200px;
+.keyboard-container .key-21 {
+  left: calc((100% / 15) * (0.5 * 22 + 0.7));
+}
+
+.keyboard-container .key-23 {
+  left: calc((100% / 15) * (0.5 * 26));
 }
 /*# sourceMappingURL=mainstyle.css.map */
